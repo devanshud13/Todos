@@ -20,10 +20,10 @@ function addtodo(inputvalue,id,marked) {
     newli.setAttribute("id", id);
     if(marked){
         newli.innerHTML = `<div id = ${num} class ="special">
-<li id=" newList" style="text-decoration: line-through">${inputvalue}</li>
+<li id="${num}c" style="text-decoration: line-through;">${inputvalue}</li>
 <div class = "cut">
 <div class="form-check">
-  <input class="form-check-input" checked type="checkbox" onclick = handleCut(${num})  value="" id="flexCheckDefault">
+  <input class="form-check-input" checked type="checkbox" onclick = handleCut("${num}c")  value="" id="flexCheckDefault">
 <button id="todo-delete"onclick = handleDelete(${num}) >
 <i class="fi fi-bs-cross id="fi"></i></button>
 </div>
@@ -31,10 +31,10 @@ function addtodo(inputvalue,id,marked) {
     }
     else{
         newli.innerHTML = `<div id = ${num} class ="special">
-<li id=" newList">${inputvalue}</li>
+<li id="${num}c">${inputvalue}</li>
 <div class = "cut">
 <div class="form-check">
-  <input class="form-check-input"  type="checkbox" onclick = handleCut(${num})  value="" id="flexCheckDefault">
+  <input class="form-check-input"  type="checkbox" onclick = handleCut("${num}c")  value="" id="flexCheckDefault">
 <button id="todo-delete"onclick = handleDelete(${num}) >
 <i class="fi fi-bs-cross id="fi"></i></button>
 </div>
