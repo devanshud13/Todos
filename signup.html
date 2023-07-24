@@ -1,0 +1,97 @@
+<!-- FILEPATH: e:\todo\final\signup.html -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Form styles */
+        form {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 50px auto;
+            max-width: 500px;
+            padding: 20px;
+            width: 90%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: none;
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        @media screen and (min-width: 768px) {
+            form {
+                width: 70%;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            form {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/signup" method="POST">
+        <h1>Sign Up</h1>
+        <label for="username">Name:</label>
+        <input type="text" id="name" name="username" >
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" >
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" >
+        <input type="submit" value="Sign Up">
+    </form>
+    <script src="/signup.js"></script>
+</body>
+
+</html>
