@@ -1,10 +1,21 @@
 const express = require("express");
+var session = require('express-session')
 const app = express();
 const fs = require("fs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+  }))
 app.get("/", function (request, response) {
-    response.sendFile(__dirname + "/week.html")
+    if (request.session.isLoggedIn) {
+        response.sendFile(__dirname + "/week.html")
+    }
+    else{
+        response.redirect("/login");
+    }
 })
 app.get("/script.js", function (request, response) {
     response.sendFile(__dirname + "/script.js")
@@ -71,7 +82,6 @@ app.post("/signup", function (request, response) {
         }
     })
 })
-
 app.post("/login", function (request, response) {
     const username = request.body.username;
     const password = request.body.password;
@@ -80,18 +90,18 @@ app.post("/login", function (request, response) {
             response.send(error);
         } else {
             users = JSON.parse(data);
-          users.filter(function (user) {
-                if (user.username === username && user.password === password) {
-                    response.redirect("/");
-                }
-                else {
-                    response.status(404);
-                    response.redirect("/signup");
-                }
-
+            const filteredUser = users.filter(function(user){
+               return  user.username === username && user.password === password;
             })
+            console.log(filteredUser);
+             if(filteredUser.length > 0){
+                request.session.isLoggedIn = true;
+                response.redirect("/");
+            }else
+            {
+                response.redirect("/signup");
+            }
         }
-
     });
 });
 app.patch("/todos/:id", function (request, response) {
@@ -158,7 +168,7 @@ app.delete("/", function (request, response) {
     });
 });
 app.listen(8080, () => {
-    console.log("Server is running on port 8000");
+    console.log("Server is running on port 8080");
 });
 function getTodos(username, all, callback) {
     fs.readFile(__dirname + "/result.json", "utf-8", function (error, data) {
