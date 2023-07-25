@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Todo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        /* Add some styles to make the page look nice */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 80vw;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .cta {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta a {
+            display: inline-block;
+            background-color: #3e8e41;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .cta a:hover {
+            background-color: #666;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+            width: 100%;
+        }
+
+        .feature {
+            width: 24%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            height: 43vh;
+        }
+
+        .feature:hover {
+            box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature i {
+            font-size: 40px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar a {
+            display: inline-block;
+            background-color: #3e8e41;
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .navbar a:hover {
+            background-color: #666;
+        }
+
+        .txt {
+            margin-right: auto;
+        }
+
+        .txt h1 {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: start;
+            cursor: pointer;
+        }
+
+        #user-name {
+
+            text-align: start;
+            color: #666;
+            font-size: 34px;
+            margin-bottom: 0px;
+
+        }
+
+        @media screen and (min-width: 300px) {
+            .feature {
+                width: 70%;
+            }
+
+            .features {
+                justify-content: space-around;
+            }
+
+            .feature h2 {
+                text-align: center;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            .feature {
+                width: 40%;
+            }
+
+            .features {
+                justify-content: space-around;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .feature {
+                width: 24%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="txt">
+                <h1>Taskely</h1>
+                <p id="user-name"></p>
+            </div>
+            <div id="logout">
+                <a href="/login">Log in</a>
+                <a href="/signup">signup</a>
+            </div>
+        </nav>
+
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-tasks"></i>
+                <h2>Organize Your Tasks</h2>
+                <p>Keep track of all your tasks in one place and stay organized.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-check"></i>
+                <h2>Mark Completed Tasks</h2>
+                <p>Easily mark tasks as completed and keep track of your progress.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-sync"></i>
+                <h2>Sync Across Devices</h2>
+                <p>Access your tasks from anywhere and keep them in sync across all your devices.</p>
+            </div>
+        </div>
+        <div class="cta">
+            <a href="/todo">Get Started</a>
+        </div>
+    </div>
+    <script src="/home.js"></script>
+</body>
+
+</html>

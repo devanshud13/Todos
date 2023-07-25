@@ -8,12 +8,22 @@ app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true,
-  }))
+}))
 app.get("/", function (request, response) {
+    response.sendFile(__dirname + "/home.html")
+})
+app.get("/userNotFound", function (request, response) {
+    response.sendFile(__dirname + "/userNotFound.html")
+})
+app.post('/logout', function (req, res) {
+    req.session.isLoggedIn = false;
+console.log("logged out");
+});
+app.get("/todo", function (request, response) {
     if (request.session.isLoggedIn) {
         response.sendFile(__dirname + "/week.html")
     }
-    else{
+    else {
         response.redirect("/login");
     }
 })
@@ -25,6 +35,9 @@ app.get("/signup.js", function (request, response) {
 })
 app.get("/login.js", function (request, response) {
     response.sendFile(__dirname + "/login.js")
+})
+app.get("/home.js", function (request, response) {
+    response.sendFile(__dirname + "/home.js")
 })
 app.get("/todos", function (request, response) {
     const name = request.query.name;
@@ -44,6 +57,44 @@ app.get("/login", function (request, response) {
 app.get("/signup", function (request, response) {
     response.sendFile(__dirname + "/signup.html");
 })
+// app.post("/signup", function (request, response) {
+//     const username = request.body.username;
+//     const email = request.body.email;
+//     const password = request.body.password;
+//     const detail = {
+//         "username": username,
+//         "password": password,
+//         "email": email
+//     }
+//     fs.readFile(__dirname + "/user.json", "utf-8", function (error, data) {
+//         if (error) {
+//             response.status(500);
+//             console.log(error);
+//         }
+//         else {
+//             if (data.length === 0) {
+//                 data = "[]";
+//             }
+//             try {
+//                 const users = JSON.parse(data);
+//                 users.push(detail);
+//                 fs.writeFile(__dirname + "/user.json", JSON.stringify(users, null, 2), function (err) {
+//                     if (err) {
+//                         response.status(500);
+//                         console.log(err);
+//                     } else {
+//                         response.status(200);
+//                         response.redirect("/login");
+//                     }
+//                 });
+//             }
+//             catch (error) {
+//                 response.status(500);
+//                 console.log(error);
+//             }
+//         }
+//     })
+// })
 app.post("/signup", function (request, response) {
     const username = request.body.username;
     const email = request.body.email;
@@ -64,18 +115,26 @@ app.post("/signup", function (request, response) {
             }
             try {
                 const users = JSON.parse(data);
-                users.push(detail);
-                fs.writeFile(__dirname + "/user.json", JSON.stringify(users, null, 2), function (err) {
-                    if (err) {
-                        response.status(500);
-                        console.log(err);
-                    } else {
-                        response.status(200);
-                        response.redirect("/login");
-                    }
-                });
-            }
-            catch (error) {
+                const filteredUser = users.filter(function (user) {
+                    return user.email === email;
+                })
+                if (filteredUser.length > 0) {
+                    response.redirect("/signup?gmail=" +"user_already_exists");
+                }
+                else {
+                    users.push(detail);
+                    fs.writeFile(__dirname + "/user.json", JSON.stringify(users, null, 2), function (err) {
+                        if (err) {
+                            response.status(500);
+                            console.log(err);
+                        } 
+                        else {
+                            response.status(200);
+                            response.redirect("/login");
+                        }
+                    });
+                }
+            } catch (error) {
                 response.status(500);
                 console.log(error);
             }
@@ -90,17 +149,25 @@ app.post("/login", function (request, response) {
             response.send(error);
         } else {
             users = JSON.parse(data);
-            const filteredUser = users.filter(function(user){
-               return  user.username === username && user.password === password;
+            const filteredUser = users.filter(function (user) {
+                return user.username === username && user.password === password;
             })
             console.log(filteredUser);
-             if(filteredUser.length > 0){
+            if (filteredUser.length > 0) {
                 request.session.isLoggedIn = true;
-                response.redirect("/");
-            }else
-            {
-                response.redirect("/signup");
+                response.redirect("/?Uname=" + username);
+            } else {
+                response.redirect("/userNotFound");
             }
+        }
+    });
+});
+app.get('/logout', function (req, res) {
+    req.session.destroy(function (err) {
+        if (err) {
+            console.error(err);
+        } else {
+            res.redirect('/');
         }
     });
 });

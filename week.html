@@ -16,7 +16,7 @@
         }
 
         .container {
-            height: 100vh;
+            height: 80vh;
             width: 100vw;
             display: flex;
             align-items: center;
@@ -73,7 +73,8 @@
             font-size: 44px;
             margin: 0px 0px 0px 18px;
         }
-        #todo-btn{
+
+        #todo-btn {
             border: none;
             background-color: transparent;
         }
@@ -99,10 +100,36 @@
             font-size: 16px;
             margin: 2px 0px 0px 20px;
         }
+
+        .log {
+            height: 20vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 4rem;
+        }
+
+        .log a {
+            display: inline-block;
+            background-color: #3e8e41;
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .log a:hover {
+            background-color: #666;
+        }
     </style>
 </head>
 
 <body>
+    <div class="log">
+        <a href="/logout"> Logout</a>
+    </div>
     <div class="container">
         <div class="left">
             <div class="txt">
@@ -117,10 +144,7 @@
             </button>
         </div>
     </div>
-
-
     <!-- <button id="todo-delete" onclick=handleAllDelete()>Delete Task</button> -->
-
     <script src="/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
