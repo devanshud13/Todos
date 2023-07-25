@@ -20,6 +20,7 @@ app.post('/logout', function (req, res) {
     console.log("logged out");
 });
 app.get("/todo", function (request, response) {
+    console.log(request.session.isLoggedIn);
     if (request.session.isLoggedIn) {
         response.sendFile(__dirname + "/week.html")
     }

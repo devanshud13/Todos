@@ -31,11 +31,12 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             padding-left: 17px;
             overflow: scroll;
+            outline: 20px rgb(210, 209, 209) solid;
+            outline-offset: -20px;
         }
 
         .left h1 {
             margin-top: 20px;
-            position: fixed;
             margin-left: 20px;
         }
 
@@ -46,7 +47,7 @@
 
         .special {
             height: 45px;
-            width: 36vw;
+            width: 80%;
             display: flex;
             align-items: center;
         }
@@ -72,6 +73,7 @@
             height: 9vh;
             font-size: 44px;
             margin: 0px 0px 0px 18px;
+            width: 90%;
         }
 
         #todo-btn {
@@ -122,6 +124,37 @@
 
         .log a:hover {
             background-color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column-reverse;
+                justify-content: flex-end;
+            }
+
+            .left {
+                width: 90vw;
+                margin: 10px;
+            }
+
+            .right {
+                width: 90vw;
+                margin: 10px;
+                height: 15%;
+            }
+
+            .left ul {
+                margin: 20% 10px 0px 0px;
+            }
+
+            .left h1 {
+                background-color: rgb(210, 209, 209);
+            }
+
+            .log {
+                justify-content: center;
+                padding-right: 0px;
+            }
         }
     </style>
 </head>
