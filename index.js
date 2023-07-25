@@ -17,7 +17,7 @@ app.get("/userNotFound", function (request, response) {
 })
 app.post('/logout', function (req, res) {
     req.session.isLoggedIn = false;
-console.log("logged out");
+    console.log("logged out");
 });
 app.get("/todo", function (request, response) {
     if (request.session.isLoggedIn) {
@@ -32,9 +32,6 @@ app.get("/script.js", function (request, response) {
 })
 app.get("/signup.js", function (request, response) {
     response.sendFile(__dirname + "/signup.js")
-})
-app.get("/login.js", function (request, response) {
-    response.sendFile(__dirname + "/login.js")
 })
 app.get("/home.js", function (request, response) {
     response.sendFile(__dirname + "/home.js")
@@ -119,7 +116,7 @@ app.post("/signup", function (request, response) {
                     return user.email === email;
                 })
                 if (filteredUser.length > 0) {
-                    response.redirect("/signup?gmail=" +"user_already_exists");
+                    response.redirect("/signup?gmail=" + "user_already_exists");
                 }
                 else {
                     users.push(detail);
@@ -127,7 +124,7 @@ app.post("/signup", function (request, response) {
                         if (err) {
                             response.status(500);
                             console.log(err);
-                        } 
+                        }
                         else {
                             response.status(200);
                             response.redirect("/login");
@@ -148,15 +145,20 @@ app.post("/login", function (request, response) {
         if (error) {
             response.send(error);
         } else {
-            users = JSON.parse(data);
-            const filteredUser = users.filter(function (user) {
-                return user.username === username && user.password === password;
-            })
-            console.log(filteredUser);
-            if (filteredUser.length > 0) {
-                request.session.isLoggedIn = true;
-                response.redirect("/?Uname=" + username);
-            } else {
+            if (data.length > 0) {
+                users = JSON.parse(data);
+                const filteredUser = users.filter(function (user) {
+                    return user.username === username && user.password === password;
+                })
+                console.log(filteredUser);
+                if (filteredUser.length > 0) {
+                    request.session.isLoggedIn = true;
+                    response.redirect("/?Uname=" + username);
+                } else {
+                    response.redirect("/userNotFound");
+                }
+            }
+            else {
                 response.redirect("/userNotFound");
             }
         }
