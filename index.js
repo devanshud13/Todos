@@ -18,14 +18,12 @@ app.use(session({
 }))
 app.set("view engine", "ejs");
 app.get("/", function (request, response) {
-        response.sendFile(__dirname + "/src/home.html")
-})
-app.get("/userNotFound", function (request, response) {
-    response.sendFile(__dirname + "/src/userNotFound.html")
+        response.render("home", { username: request.session.username });
 })
 app.get("/todo", function (request, response) {
     if (request.session.isLoggedIn === true) {
-        response.sendFile(__dirname + "/src/week.html")
+        // response.sendFile(__dirname + "/src/week.html")
+        response.render("todo",{username: request.session.username});
     }
     else {
         response.redirect("/login");
@@ -53,10 +51,10 @@ app.get("/todos", function (request, response) {
     });
 })
 app.get("/login", function (request, response) {
-    response.sendFile(__dirname + "/src/login.html");
+    response.render("login", { usernotfound: request.session.usernotfound });
 })
 app.get("/signup", function (request, response) {
-    response.sendFile(__dirname + "/src/signup.html");
+    response.render("signup",{email: request.session.email});
 })
 app.post("/signup", function (request, response) {
     const username = request.body.username;
@@ -82,7 +80,8 @@ app.post("/signup", function (request, response) {
                     return user.email === email;
                 })
                 if (filteredUser.length > 0) {
-                    response.redirect("/signup?gmail=" + "user_already_exists");
+                    request.session.email = email;
+                    response.redirect("/signup");
                 }
                 else {
                     users.push(detail);
@@ -107,6 +106,7 @@ app.post("/signup", function (request, response) {
 app.post("/login", function (request, response) {
     const username = request.body.username;
     const password = request.body.password;
+    request.session.usernotfound = false; 
     fs.readFile(__dirname + "/user.json", "utf-8", function (error, data) {
         if (error) {
             response.send(error);
@@ -118,9 +118,11 @@ app.post("/login", function (request, response) {
                 })
                 if (filteredUser.length > 0) {
                     request.session.isLoggedIn = true;
-                    response.redirect("/?Uname=" + username);
+                    request.session.username = username;
+                    response.redirect("/");
                 } else {
-                    response.redirect("/userNotFound");
+                    request.session.usernotfound = true;
+                    response.redirect("/login");
                 }
             }
             else {
@@ -200,7 +202,6 @@ app.delete("/", function (request, response) {
         }
     });
 });
-
 app.listen(8080, () => {
     console.log("Server is running on port 8080");
 });

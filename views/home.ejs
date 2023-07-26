@@ -171,11 +171,22 @@
         <nav class="navbar">
             <div class="txt">
                 <h1>Taskely</h1>
-                <p id="user-name"></p>
+                <% if(username){%>
+                    <p id="user-name">
+                        Welcome <%=username%>...
+                    </p>
+                    <%} else {%>
+                        <p id="user-name">A Simple Todo App</p>
+                        <%}%>
             </div>
             <div id="logout">
+                <%if(username){%>
+                    <a href="/logout">Logout</a>
+                    <%} else {%>
+
                 <a href="/login">Log in</a>
                 <a href="/signup">signup</a>
+                <%}%>
             </div>
         </nav>
 

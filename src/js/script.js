@@ -1,4 +1,4 @@
-const userName = prompt("enter your name");
+const userName = txt;
 const prevText = document.getElementById("todo-input");
 let todosFetched = false;
 getTodos();
