@@ -51,7 +51,7 @@ app.get("/todos", function (request, response) {
     });
 })
 app.get("/login", function (request, response) {
-    response.render("login", { usernotfound: request.session.usernotfound });
+        response.render("login", { usernotfound: request.session.usernotfound });
 })
 app.get("/signup", function (request, response) {
     response.render("signup",{email: request.session.email});
@@ -65,7 +65,7 @@ app.post("/signup", function (request, response) {
         "password": password,
         "email": email
     }
-    fs.readFile(__dirname + "/user.json", "utf-8", function (error, data) {
+    fs.readFile(__dirname + "/user.txt", "utf-8", function (error, data) {
         if (error) {
             response.status(500);
             console.log(error);
@@ -85,14 +85,14 @@ app.post("/signup", function (request, response) {
                 }
                 else {
                     users.push(detail);
-                    fs.writeFile(__dirname + "/user.json", JSON.stringify(users, null, 2), function (err) {
+                    fs.writeFile(__dirname + "/user.txt", JSON.stringify(users, null, 2), function (err) {
                         if (err) {
                             response.status(500);
                             console.log(err);
                         }
                         else {
                             response.status(200);
-                            response.redirect("/login");
+                            response.render("login", { usernotfound : false });
                         }
                     });
                 }
@@ -107,7 +107,7 @@ app.post("/login", function (request, response) {
     const username = request.body.username;
     const password = request.body.password;
     request.session.usernotfound = false; 
-    fs.readFile(__dirname + "/user.json", "utf-8", function (error, data) {
+    fs.readFile(__dirname + "/user.txt", "utf-8", function (error, data) {
         if (error) {
             response.send(error);
         } else {
@@ -142,7 +142,7 @@ app.get('/logout', function (req, res) {
 });
 app.patch("/todos/:id", function (request, response) {
     const id = parseInt(request.params.id);
-    fs.readFile(__dirname + "/result.json", "utf-8", function (error, data) {
+    fs.readFile(__dirname + "/result.txt", "utf-8", function (error, data) {
         if (error) {
             response.status(500);
             response.json({ error: error });
@@ -151,7 +151,7 @@ app.patch("/todos/:id", function (request, response) {
             const todoToUpdate = todos.find((todo) => todo.id === id);
             if (todoToUpdate) {
                 todoToUpdate.marked = request.body.marked;
-                fs.writeFile(__dirname + "/result.json", JSON.stringify(todos, null, 2), function (err) {
+                fs.writeFile(__dirname + "/result.txt", JSON.stringify(todos, null, 2), function (err) {
                     if (err) {
                         response.status(500);
                         response.json({ error: err });
@@ -190,7 +190,7 @@ app.delete("/", function (request, response) {
             const filteredTodos = todos.filter(function (todoItem) {
                 return todoItem.text !== text;
             });
-            fs.writeFile(__dirname + "/result.json", JSON.stringify(filteredTodos, null, 2), function (err) {
+            fs.writeFile(__dirname + "/result.txt", JSON.stringify(filteredTodos, null, 2), function (err) {
                 if (err) {
                     response.status(500);
                     response.json({ error: err });

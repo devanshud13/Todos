@@ -18,7 +18,7 @@ function savetodos(todo, callback) {
                 todos.push(todo);
             }
 
-            fs.writeFile("result.json", JSON.stringify(todos, null, 2), function (err) {
+            fs.writeFile("result.txt", JSON.stringify(todos, null, 2), function (err) {
                 if (err) {
                     callback(err);
                 }

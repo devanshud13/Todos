@@ -1,6 +1,6 @@
 const fs = require("fs");
 function getTodos(username, all, callback) {
-    fs.readFile("result.json", "utf-8", function (error, data) {
+    fs.readFile("result.txt", "utf-8", function (error, data) {
         if (error) {
             callback(error);
         } else {
