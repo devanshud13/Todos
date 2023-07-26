@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My Todo App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
@@ -54,7 +56,7 @@
         .features {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
             margin-top: 40px;
             width: 100%;
         }
@@ -68,6 +70,7 @@
             margin-bottom: 20px;
             height: 20rem;
             cursor: pointer;
+            margin-top: 40px;
         }
 
         .feature:hover {
@@ -134,7 +137,7 @@
 
         }
 
-        @media screen and (min-width: 300px) {
+        /* @media screen and (min-width: 401px) {
             .feature {
                 width: 70%;
             }
@@ -147,48 +150,152 @@
                 text-align: center;
             }
         }
-
         @media screen and (min-width: 768px) {
             .feature {
-                width: 40%;
+                width: 50%;
             }
 
             .features {
                 justify-content: space-around;
             }
         }
-
         @media screen and (min-width: 992px) {
             .feature {
                 width: 24%;
             }
+        } */
+        @media (max-width: 576px) {
+            .container {
+                max-width: 100%;
+                padding: 40px;
+            }
+
+            .feature {
+                width: 100%;
+                height: auto;
+                margin-bottom: 14px;
+                margin-top: 15px;
+            }
+
+            .features {
+                margin-top: 0px;
+            }
+
+            .cta a {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+            .cta{
+                margin-top: 0px;
+            }
+
+            .navbar a {
+                height: 1rem;
+                width: 3rem;
+            }
+
+            #logout {
+                display: flex;
+                align-items: flex-start !important;
+                margin-left: 2rem;
+            }
+
+            .res {
+                display: flex;
+            }
+
+            .txt h1 {
+                margin-top: 0px;
+            }
+            #dis-none{
+                display: none;
+            }
+        }
+
+        #logout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .res {
+            display: flex;
+            width: 100%;
+        }
+
+        /* Medium screens (576px - 768px) */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+
+            .feature {
+                width: 48%;
+                height: 18rem;
+            }
+        }
+
+        /* Large screens (768px - 992px) */
+        @media (min-width: 768px) and (max-width: 992px) {
+            .container {
+                max-width: 80%;
+            }
+
+            .feature {
+                width: 31%;
+                height: 20rem;
+            }
+
+
+        }
+
+        /* Extra large screens (992px and up) */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 70%;
+            }
+
+            .feature {
+                width: 24%;
+                height: 20rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
         }
     </style>
+
 </head>
 
-<body>
+<body class="small-screen">
     <div class="container">
         <nav class="navbar">
-            <div class="txt">
-                <h1>Taskely</h1>
-                <% if(username){%>
-                    <p id="user-name">
-                        Welcome <%=username%>...
-                    </p>
-                    <%} else {%>
-                        <p id="user-name">A Simple Todo App</p>
-                        <%}%>
-            </div>
-            <div id="logout">
-                <%if(username){%>
-                    <a href="/logout">Logout</a>
-                    <%} else {%>
+            <div class="res">
+                <div class="txt">
+                    <h1>Taskely</h1>
+                </div>
+                <div id="logout">
+                    <%if(username){%>
+                        <a href="/logout">Logout</a>
+                        <%} else {%>
 
-                <a href="/login">Log in</a>
-                <a href="/signup">signup</a>
-                <%}%>
+                            <a href="/login">Log in</a>
+                            <a href="/signup">signup</a>
+                            <%}%>
+                </div>
             </div>
         </nav>
+        <div class="us">
+            <% if(username){%>
+                <p id="user-name">
+                    Welcome <%=username%>...
+                </p>
+                <%} else {%>
+                    <p id="user-name">A Simple Todo App</p>
+                    <%}%>
+        </div>
+
 
         <div class="features">
             <div class="feature">
@@ -201,7 +308,7 @@
                 <h2>Mark Completed Tasks</h2>
                 <p>Easily mark tasks as completed and keep track of your progress.</p>
             </div>
-            <div class="feature">
+            <div id="dis-none" class="feature">
                 <i class="fas fa-sync"></i>
                 <h2>Sync Across Devices</h2>
                 <p>Access your tasks from anywhere and keep them in sync across all your devices.</p>
