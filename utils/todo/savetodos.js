@@ -17,7 +17,6 @@ function savetodos(todo, callback) {
                 // If the todo doesn't exist, add it to the list
                 todos.push(todo);
             }
-
             fs.writeFile("result.txt", JSON.stringify(todos, null, 2), function (err) {
                 if (err) {
                     callback(err);

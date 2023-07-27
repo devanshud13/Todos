@@ -15,7 +15,6 @@ function handleChange() {
 function addtodo(inputvalue,id,marked) {
     const numi = new Date()
     const num = numi.getTime();
-    console.log(num);
     const newli = document.createElement("div");
     newli.setAttribute("id", id);
     if(marked){

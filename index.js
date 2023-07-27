@@ -168,7 +168,6 @@ app.patch("/todos/:id", function (request, response) {
     });
 });
 app.post("/", function (request, response) {
-    // todos.push(request.body);
     const todo = request.body;
     savetodos(todo, function (error, savedTodo) {
         if (error) {
