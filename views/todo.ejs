@@ -7,164 +7,16 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-straight/css/uicons-bold-straight.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            height: 80vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .left {
-            width: 48vw;
-            height: 50vh;
-            background-color: rgb(210, 209, 209);
-            border-radius: 10px;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            padding-left: 17px;
-            overflow: scroll;
-            outline: 20px rgb(210, 209, 209) solid;
-            outline-offset: -20px;
-        }
-
-        .left h1 {
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-
-        .left ul {
-            list-style-type: none;
-            margin: 59px 0px 0px 0px;
-        }
-
-        .special {
-            height: 45px;
-            width: 80%;
-            display: flex;
-            align-items: center;
-        }
-
-        .special li {
-            margin-right: auto;
-        }
-
-        .special button {
-            cursor: pointer;
-            background-color: transparent;
-            border: 0px;
-        }
-
-        .right {
-            width: 48vw;
-            height: 50vh;
-        }
-
-        #todo-input {
-
-            border: none;
-            height: 9vh;
-            font-size: 44px;
-            margin: 0px 0px 0px 18px;
-            width: 90%;
-        }
-
-        #todo-btn {
-            border: none;
-            background-color: transparent;
-        }
-
-        ::-webkit-scrollbar {
-            display: none;
-        }
-
-        textarea:focus,
-        input:focus {
-            outline: none;
-        }
-
-        #todo-delete {
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .fi {
-            font-size: 16px;
-            margin: 2px 0px 0px 20px;
-        }
-
-        .log {
-            height: 20vh;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding-right: 4rem;
-        }
-
-        .log a {
-            display: inline-block;
-            background-color: #3e8e41;
-            color: #fff;
-            padding: 6px 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .log a:hover {
-            background-color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column-reverse;
-                justify-content: flex-end;
-            }
-
-            .left {
-                width: 90vw;
-                margin: 10px;
-            }
-
-            .right {
-                width: 90vw;
-                margin: 10px;
-                height: 15%;
-            }
-
-            .left ul {
-                margin: 20% 10px 0px 0px;
-            }
-
-            .left h1 {
-                background-color: rgb(210, 209, 209);
-            }
-
-            .log {
-                justify-content: center;
-                padding-right: 0px;
-            }
-        }
-    </style>
+<link rel="stylesheet" href="/todo.css">
+<link rel="stylesheet" href="/header.css">
     <script>
         const txt = `<%=username %>`;
     </script>
 </head>
 
 <body>
-    <div class="log">
-        <a href="/logout"> Logout</a>
-    </div>
+    <%- include('header.ejs') %>
+
     <div class="container">
         <div class="left">
             <div class="txt">

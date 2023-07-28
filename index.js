@@ -29,14 +29,26 @@ app.get("/todo", function (request, response) {
         response.redirect("/login");
     }
 })
+app.get("/home.css", function (request, response) {
+    response.sendFile(__dirname + "/src/css/home.css")
+})
+app.get("/login.css", function (request, response) {
+    response.sendFile(__dirname + "/src/css/login.css")
+})
+app.get("/signup.css", function (request, response) {
+    response.sendFile(__dirname + "/src/css/signup.css")
+})
+app.get("/todo.css", function (request, response) {
+    response.sendFile(__dirname + "/src/css/todo.css")
+})
+app.get('/header.css', function (request, response) {
+    response.sendFile(__dirname + "/src/css/header.css")
+})
 app.get("/script.js", function (request, response) {
     response.sendFile(__dirname + "/src/js/script.js")
 })
 app.get("/signup.js", function (request, response) {
     response.sendFile(__dirname + "/src/js/signup.js")
-})
-app.get("/home.js", function (request, response) {
-    response.sendFile(__dirname + "/src/js/home.js")
 })
 app.get("/todos", function (request, response) {
     const name = request.query.name;

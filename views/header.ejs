@@ -1,0 +1,27 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+        <h1>Taskely</h1>
+    </div>
+    <div class="subtext">
+        <% if (username) { %>
+            <p class="paragraph" >Welcome <%= username %>...</p>
+            <% } else { %>
+                <p class="paragraph">A simple todo app</p>
+                <% } %>
+    </div>
+    <div class="navbar-buttons">
+        <% if (username) { %>
+
+            <a class="nav-link" aria-current="page" href="/logout">Log
+                out</a>
+
+            <% } else { %>
+
+                <a class="nav-link " aria-current="page" href="/login">Log
+                    in</a>
+
+                <a class="nav-link " aria-current="page" href="/signup">Signup</a>
+
+                <% } %>
+    </div>
+</nav>
