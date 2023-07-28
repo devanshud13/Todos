@@ -47,9 +47,6 @@ app.get('/header.css', function (request, response) {
 app.get("/script.js", function (request, response) {
     response.sendFile(__dirname + "/src/js/script.js")
 })
-app.get("/signup.js", function (request, response) {
-    response.sendFile(__dirname + "/src/js/signup.js")
-})
 app.get("/todos", function (request, response) {
     const name = request.query.name;
     getTodos(name, false, function (error, todos) {
@@ -63,10 +60,18 @@ app.get("/todos", function (request, response) {
     });
 })
 app.get("/login", function (request, response) {
-        response.render("login", { usernotfound: request.session.usernotfound });
+    if (request.session.isLoggedIn) {
+         response.redirect("login" ,{ username: request.session.username }); // now is there any need of if else situation isloggedin ANS: if user logged in render todo page else render login page
+    }else{
+        response.render('login', { username: request.session.username, usernotfound: request.session.usernotfound}); //
+    }
 })
-app.get("/signup", function (request, response) {
-    response.render("signup",{email: request.session.email});
+app.get("/signup", function (request, response) { // go to login.ejs  you also come  not working
+    if (request.session.isLoggedIn) {
+        response.redirect("signup" ,{ username: request.session.username });
+    }else{
+    response.render("signup",{username: request.session.username ,email: request.session.email}); //also you dont need usernotfound
+        }
 })
 app.post("/signup", function (request, response) {
     const username = request.body.username;
@@ -104,12 +109,12 @@ app.post("/signup", function (request, response) {
                         }
                         else {
                             response.status(200);
-                            response.render("login", { usernotfound : false });
+                            response.render("login", {username: null, usernotfound : false }); //added username: null now?. ANS: Oh yes! 
                         }
                     });
                 }
             } catch (error) {
-                response.status(500);
+                response.status(500);//what happened
                 console.log(error);
             }
         }
@@ -138,7 +143,7 @@ app.post("/login", function (request, response) {
                 }
             }
             else {
-                response.redirect("/userNotFound");
+                response.redirect("/login");
             }
         }
     });

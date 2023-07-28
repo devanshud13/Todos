@@ -9,7 +9,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 38rem;
 }
 
 .form {
@@ -55,11 +55,15 @@ body {
     .form {
         width: 76%;
     }
+
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     .form {
         width: 70%;
+    }
+    .alert-danger {
+        margin-top: 4rem;
     }
 }
 
@@ -71,7 +75,7 @@ body {
 
 .alert-danger {
     position: fixed !important;
-    top: 6% !important;
+    top: 16% !important;
 }
 
 #email-alert {

@@ -27,6 +27,7 @@
 
 .navbar a:hover {
     background-color: #666;
+    color: white !important;
 }
 
 .navbar-brand {

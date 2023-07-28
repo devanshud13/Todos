@@ -167,6 +167,7 @@ p {
     .navbar a {
         height: 1rem;
         width: 3rem;
+        font-size: 14px !important;
     }
 
     #logout {
