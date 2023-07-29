@@ -63,5 +63,10 @@
     "username": "Deepanshu Arya",
     "password": "147",
     "email": "b@b.com"
+  },
+  {
+    "username": "dev",
+    "password": "asdsasa",
+    "email": "asasdasdad@gmail.com"
   }
 ]
