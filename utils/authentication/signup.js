@@ -36,7 +36,7 @@ function signup(request, response) {
             }
             else {
               response.status(200);
-              response.render("login", {username: null, usernotfound : false });
+              response.render("login", { username: null, usernotfound: false });
             }
           });
         }

@@ -9,7 +9,6 @@ function savetodos(todo, callback) {
             const existingTodoIndex = todos.findIndex(
                 (t) => t.username === todo.username && t.text === todo.text
             );
-
             if (existingTodoIndex !== -1) {
                 // If the todo already exists, update its properties
                 todos[existingTodoIndex] = todo;

@@ -9,15 +9,15 @@ function callButton(event) {
 }
 function handleChange() {
     const inputvalue = prevText.value;
-    addtodo(inputvalue,false);
+    addtodo(inputvalue, false);
     prevText.value = "";
 }
-function addtodo(inputvalue,id,marked) {
+function addtodo(inputvalue, id, marked) {
     const numi = new Date()
     const num = numi.getTime();
     const newli = document.createElement("div");
     newli.setAttribute("id", id);
-    if(marked){
+    if (marked) {
         newli.innerHTML = `<div id = ${num} class ="special">
 <li id="${num}c" style="text-decoration: line-through;">${inputvalue}</li>
 <div class = "cut">
@@ -28,7 +28,7 @@ function addtodo(inputvalue,id,marked) {
 </div>
 </div>`
     }
-    else{
+    else {
         newli.innerHTML = `<div id = ${num} class ="special">
 <li id="${num}c">${inputvalue}</li>
 <div class = "cut">
@@ -40,21 +40,21 @@ function addtodo(inputvalue,id,marked) {
 </div>`
     }
     document.getElementById("list").appendChild(newli);
-        handleSave(inputvalue, num,marked); 
+    handleSave(inputvalue, num, marked);
 }
-function handleCut(id){
+function handleCut(id) {
     const div = document.getElementById(id);
-    if(div.style.textDecoration === "line-through"){
+    if (div.style.textDecoration === "line-through") {
         div.style.textDecoration = "none";
-        handleMarked(id,false);
+        handleMarked(id, false);
     }
-    else{
+    else {
         div.style.textDecoration = "line-through";
-        handleMarked(id,true);
+        handleMarked(id, true);
 
     }
 }
-function handleMarked(id,marked){
+function handleMarked(id, marked) {
     fetch(`/todos/${id}`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -70,7 +70,7 @@ function handleMarked(id,marked){
 function handleDelete(num) {
     const button = document.getElementById(num);
     const todo = button.closest(".special"); // Find the closest parent element with class "special"
-    
+
     deleteTodo(todo.querySelector("li").innerText, function (error) {
         if (error) {
             alert(error);
@@ -79,7 +79,7 @@ function handleDelete(num) {
         }
     });
 }
-function handleSave(todo, num,marked= false) {
+function handleSave(todo, num, marked = false) {
     fetch("/", {
         method: "POST",
         body: JSON.stringify({
@@ -93,7 +93,7 @@ function handleSave(todo, num,marked= false) {
         },
     })
 }
- function getTodos() {
+function getTodos() {
     fetch("/todos?name=" + userName)
         .then(function (response) {
             if (response.status !== 200) {
@@ -104,25 +104,25 @@ function handleSave(todo, num,marked= false) {
         .then(function (todos) {
             todos.forEach(function (todo) {
                 const marked = todo.marked === true;
-                addtodo(todo.text, todo.id,todo.marked);
+                addtodo(todo.text, todo.id, todo.marked);
             });
         })
         .catch(function (error) {
             alert(error);
         });
 }
-  function deleteTodo(todo, callback) {
+function deleteTodo(todo, callback) {
     fetch("/", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({text: todo, username: userName, }),
+        body: JSON.stringify({ text: todo, username: userName, }),
     }).then(function (response) {
         if (response.status === 200) {
-          callback();
+            callback();
         } else {
-          callback("Something went wrong");
+            callback("Something went wrong");
         }
-      });
+    });
 }  

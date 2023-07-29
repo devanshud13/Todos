@@ -1,5 +1,5 @@
-const  getTodos  = require("./utils/todo/getTodos.js");
-const  savetodos  = require("./utils/todo/savetodos.js");
+const getTodos  = require("./utils/todo/getTodos.js");
+const savetodos  = require("./utils/todo/savetodos.js");
 const signup = require("./utils/authentication/signup.js");
 const login = require("./utils/authentication/login.js");
 const patchTodo = require("./utils/todo/patchTodo.js");
@@ -22,11 +22,10 @@ app.use(session({
 }))
 app.set("view engine", "ejs");
 app.get("/", function (request, response) {
-        response.render("home", { username: request.session.username });
+    response.render("home", { username: request.session.username });
 })
 app.get("/todo", function (request, response) {
     if (request.session.isLoggedIn === true) {
-        // response.sendFile(__dirname + "/src/week.html")
         response.render("data",{username: request.session.username});
     }
     else {
@@ -63,13 +62,6 @@ app.get("/todos", function (request, response) {
         }
     });
 })
-app.get("/login", function (request, response) {
-    if (request.session.isLoggedIn) {
-         response.redirect("login" ,{ username: request.session.username });
-    }else{
-        response.render('login', { username: request.session.username, usernotfound: request.session.usernotfound}); //
-    }
-})
 app.get("/signup", function (request, response) { 
     if (request.session.isLoggedIn) {
         response.redirect("signup" ,{ username: request.session.username });
@@ -78,6 +70,14 @@ app.get("/signup", function (request, response) {
         }
 })
 app.post("/signup", signup);
+app.get("/login", function (request, response) {
+    if (request.session.isLoggedIn) {
+         response.redirect("login" ,{ username: request.session.username });
+         return;
+    }else{
+         response.render('login', { username: request.session.username,usernotfound: request.session.usernotfound});
+    }
+})
 app.post("/login", login);
 app.delete("/", deleteTodo);
 app.patch("/todos/:id", patchTodo);
