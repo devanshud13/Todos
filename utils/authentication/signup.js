@@ -36,7 +36,9 @@ function signup(request, response) {
             }
             else {
               response.status(200);
-              response.render("login", { username: null, usernotfound: false });
+              request.session.username = null;
+              request.session.usernotfound = false; 
+              response.redirect("/login");
             }
           });
         }

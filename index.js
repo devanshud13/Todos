@@ -20,6 +20,8 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }))
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 app.set("view engine", "ejs");
 app.get("/", function (request, response) {
     response.render("home", { username: request.session.username });
@@ -63,19 +65,23 @@ app.get("/todos", function (request, response) {
     });
 })
 app.get("/signup", function (request, response) { 
+    const Email = request.session.email;
+    request.session.email = null;
     if (request.session.isLoggedIn) {
         response.redirect("signup" ,{ username: request.session.username });
     }else{
-    response.render("signup",{username: request.session.username ,email: request.session.email});
+    response.render("signup",{username: request.session.username ,email:Email});
         }
 })
 app.post("/signup", signup);
 app.get("/login", function (request, response) {
+    const user = request.session.usernotfound;
+    request.session.usernotfound = false;
     if (request.session.isLoggedIn) {
          response.redirect("login" ,{ username: request.session.username });
          return;
     }else{
-         response.render('login', { username: request.session.username,usernotfound: request.session.usernotfound});
+         response.render('login', { username: request.session.username,usernotfound:user});
     }
 })
 app.post("/login", login);
