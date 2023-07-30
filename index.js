@@ -20,8 +20,6 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }))
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
 app.set("view engine", "ejs");
 app.get("/", function (request, response) {
     response.render("home", { username: request.session.username });
