@@ -7,7 +7,7 @@ function signup(request, response) {
   const detail = {
     "username": username,
     "password": password,
-    "email": email
+    "email": email,
   }
   fs.readFile("user.txt", "utf-8", function (error, data) {
     if (error) {

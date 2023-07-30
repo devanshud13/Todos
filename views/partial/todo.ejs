@@ -7,8 +7,10 @@
         </ul>
     </div>
     <div class="right">
-        <input type="text" name="todo" id="todo-input" placeholder="I need to..." onkeypress=callButton(event)>
-        <button id="todo-btn" onclick=handleChange()>
-        </button>
+        <form action="/todoos" method="POST" enctype="multipart/form-data">
+        <input type="text" name="todo" id="todo-input" placeholder="I need to...">
+            <input type="file" name="avtar" id="avtar-input" >
+            <input type="submit" value="submit">
+        </form>
     </div>
 </div>
