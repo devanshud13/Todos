@@ -5,9 +5,6 @@ function handleEnter(event){
         document.getElementById("avtar-input").click();
     }
 }
-
-
-
 fetch('/data')
   .then(response => response.json())
   .then(data => {

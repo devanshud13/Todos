@@ -29,25 +29,4 @@ function login(request, response) {
         }
     });
 }
-
-// function login(username, password, callback) {
-//     fs.readFile("user.txt", "utf-8", function (error, data) {
-//         if (error) {
-//             callback(error, "");
-//         }
-//         if (data.length > 0) {
-//             users = JSON.parse(data);
-//             const filteredUser = users.filter(function (user) {
-//                 return user.username === username && user.password === password;
-//             })
-//             if (filteredUser.length != 1) {
-//                 callback("user not found","");
-//                 return;
-//             }
-//             callback(null,"");
-//         }
-
-//     });
-// }
-
 module.exports = login;

@@ -156,19 +156,8 @@ function deleteTodo(todo, callback) {
     </div>
 </div>`
 
-
-
-
-
-
-
-
-
-
-
-
 const getTodos  = require("./utils/todo/getTodos.js");
-const savetodos  = require("./utils/todo/savetodos.js");
+// const savetodos  = require("./utils/todo/savetodos.js");
 const signup = require("./utils/authentication/signup.js");
 const login = require("./utils/authentication/login.js");
 const patchTodo = require("./utils/todo/patchTodo.js");
