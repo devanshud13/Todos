@@ -29,7 +29,6 @@ fetch('/data')
             <i class="fi fi-bs-cross id="fi"></i></button>
         </div>
         </div>
-        <img id="todo-image-${num}" src="" alt="Todo Image" style="display: none;">
         </div>`;
         } else {
             newli.innerHTML = `<div id=${num} class="special">
@@ -42,7 +41,6 @@ fetch('/data')
             <i class="fi fi-bs-cross id="fi"></i></button>
         </div>
         </div>
-        <img id="todo-image-${num}" src="" alt="Todo Image" class="avtar" style="display: none;">
         </div>`;
         }
         document.getElementById("list").appendChild(newli);
