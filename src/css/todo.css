@@ -12,6 +12,43 @@
     justify-content: center;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+#avtar-input {
+    margin-left: 20px;
+}
+input[type="file"]::file-selector-button {
+    background-color: #3e8e41;
+    color: #fff;
+    padding: 3px 17px;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    border: none;
+  }
+  
+  input[type="file"]::file-selector-button:hover {
+    background-color: #666;
+  }
+#avtar-submit {
+    margin-left: 20px;
+    background-color: #3e8e41;
+    color: #fff;
+    padding: 3px 17px;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    border: none;
+}
+#avtar-submit:hover {
+    background-color: #666;
+}
+
 .avtar {
     width: 50px !important;
     height: 50px !important;

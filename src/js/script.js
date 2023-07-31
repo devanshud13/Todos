@@ -1,4 +1,13 @@
 const userName = txt;
+function handleEnter(event){
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("avtar-input").click();
+    }
+}
+
+
+
 fetch('/data')
   .then(response => response.json())
   .then(data => {
