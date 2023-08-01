@@ -8,7 +8,7 @@
     </div>
     <div class="right">
         <form action="/todoos" method="POST" enctype="multipart/form-data">
-        <input type="text" name="todo" id="todo-input" placeholder="I need to..."  onkeypress=handleEnter(event)>
+        <input type="text" name="todo" id="todo-input" placeholder="I need to..."  onkeypress=handleEnter(event) required>
             <input type="file" name="avtar" id="avtar-input" >
             <input type="submit" value="submit" id="avtar-submit">
         </form>
