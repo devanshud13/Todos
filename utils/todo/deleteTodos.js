@@ -34,7 +34,7 @@
 // }
 
 // module.exports = deleteTodos;
-
+const fs = require("fs");
 const TodoData = require("../../modals/todoData");
 function deleteTodos(request, response) {
   const id = parseInt(request.params.id);
@@ -44,6 +44,11 @@ function deleteTodos(request, response) {
         response.status(404);
         response.send("Todo not found");
       } else {
+        fs.unlink(`uploads/${todo.avtar}`, function (error) {
+          if (error) {
+            console.error(error);
+          }
+        });
         response.status(200);
         response.send("Data deleted successfully");
       }
