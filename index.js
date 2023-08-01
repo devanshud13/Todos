@@ -5,6 +5,9 @@ const deleteTodos = require("./utils/todo/deleteTodos.js");
 const signup = require("./utils/authentication/signup.js");
 const login = require("./utils/authentication/login.js");
 const logout = require("./utils/authentication/logout.js");
+const connect = require("./modals/database.js");
+const User = require("./modals/users.js");
+const TodoData = require("./modals/todoData.js");
 
 const express = require("express");
 var session = require('express-session')
@@ -12,6 +15,7 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const app = express();
 const fs = require("fs");
+
 
 app.use(function (req, res, next) {
     if (!req.user)
@@ -87,6 +91,7 @@ app.get("/data",getTodos);
 app.post("/todoos",saveTodos);
 app.patch("/todos/:id", markTodos);
 app.delete("/delete/:id", deleteTodos);
+connect();
 app.listen(8080, () => {
     console.log("Server is running on port 8080");
 });

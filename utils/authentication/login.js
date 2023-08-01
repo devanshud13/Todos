@@ -30,3 +30,22 @@ function login(request, response) {
     });
 }
 module.exports = login;
+
+const User = require("../../modals/users");
+
+function login(request, response){
+    const username = request.body.username;
+    const password = request.body.password;
+    request.session.usernotfound = false;
+    User.findOne({username: username, password: password})
+    .then(function(user){
+        if(user){
+            request.session.isLoggedIn = true;
+            request.session.username = username;
+            response.redirect("/");
+        }else{
+            request.session.usernotfound = true;
+            response.redirect("/login");
+        }
+    })
+}

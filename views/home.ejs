@@ -11,6 +11,7 @@
 
 <body class="small-screen">
     <%- include('partial/header.ejs') %>
+    <!-- <button class="toggle" onclick=handleDark()>dark mode</button> -->
     <div class="features">
         <div class="feature">
             <i class="fas fa-tasks"></i>
@@ -32,6 +33,60 @@
         <a href="/todo">Get Started</a>
     </div>
     </div>
+    <!-- <script>
+        function handleDark() {
+            const element = document.body;
+            const nav = document.getElementsByClassName("navbar");
+            const h1 = document.getElementsByTagName("h1");
+            const para = document.getElementsByClassName("paragraph");
+            const feature = document.getElementsByClassName("feature");
+            const fas = document.getElementsByClassName("fas");
+            const h2 = document.getElementsByTagName("h2");
+            const p = document.getElementsByTagName("p");
+            if(element.style.backgroundColor == "black"){ 
+                p[0].style.color = "black";
+                p[1].style.color = "black";
+                p[2].style.color = "black";
+                p[3].style.color = "black";
+                h2[0].style.color = "black";
+                h2[1].style.color = "black";
+                h2[2].style.color = "black";
+                fas[0].style.color = "black";
+                fas[1].style.color = "black";
+                fas[2].style.color = "black";
+                feature[0].style.backgroundColor = "#f2f2f2";
+                feature[1].style.backgroundColor = "#f2f2f2";
+                feature[2].style.backgroundColor = "#f2f2f2";
+                para[0].style.color = "black";
+                h1[0].style.color = "black";
+                nav[0].style.backgroundColor = "#f2f2f2";
+                nav[0].style.color = "black";
+                element.style.backgroundColor = "#f2f2f2";   
+                element.style.color = "black";
+            }
+            else{
+                p[0].style.color = "white";
+                p[1].style.color = "white";
+                p[2].style.color = "white";
+                p[3].style.color = "white";
+                h2[0].style.color = "white";
+                h2[1].style.color = "white";
+                h2[2].style.color = "white";
+                fas[0].style.color = "white";
+                fas[1].style.color = "white";
+                fas[2].style.color = "white";
+                feature[0].style.backgroundColor = "#353535";
+                feature[1].style.backgroundColor = "#353535";
+                feature[2].style.backgroundColor = "#353535";
+                para[0].style.color = "white";
+                h1[0].style.color = "white";
+                nav[0].style.backgroundColor = "#353535";
+                nav[0].style.color = "white";
+                element.style.backgroundColor = "black";
+                element.style.color = "white";
+            }
+        }
+    </script> -->
 </body>
 
 </html>

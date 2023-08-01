@@ -275,3 +275,92 @@ app.post("/", function (request, response) {
 app.listen(8080, () => {
     console.log("Server is running on port 8080");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function createTodoElement(todo) {
+  const div = document.createElement("div");
+  div.id = todo.id;
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = todo.marked;
+  checkbox.addEventListener("change", function () {
+    handleCut(todo.id);
+  });
+  const span = document.createElement("span");
+  span.innerText = todo.text;
+  span.style.textDecoration = todo.marked ? "line-through" : "none";
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "Delete";
+  deleteButton.addEventListener("click", function () {
+    handleDelete(todo.id);
+  });
+  const editButton = document.createElement("button");
+  editButton.innerText = "Edit";
+  editButton.addEventListener("click", function () {
+    const form = document.createElement("form");
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    const submitButton = document.createElement("button");
+    submitButton.type = "submit";
+    submitButton.innerText = "Upload";
+    form.appendChild(fileInput);
+    form.appendChild(submitButton);
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+      fetch(`/todos/${todo.id}/image`, {
+        method: "POST",
+        body: formData
+      })
+        .then(function (response) {
+          if (response.status !== 200) {
+            throw new Error("Something went wrong");
+          }
+          return response.json();
+        })
+        .then(function (data) {
+          // image updat kr naya todo item ki
+          const img = document.createElement("img");
+          img.src = data.imageUrl;
+          div.appendChild(img);
+          // form ko remove kr de kyuki image upload ho chuki hai
+          form.remove();
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    });
+    div.appendChild(form);
+  });
+  div.appendChild(checkbox);
+  div.appendChild(span);
+  div.appendChild(deleteButton);
+  div.appendChild(editButton);
+  if (todo.imageUrl) {
+    const img = document.createElement("img");
+    img.src = todo.imageUrl;
+    div.appendChild(img);
+  }
+  return div;
+}
