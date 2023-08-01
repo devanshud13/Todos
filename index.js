@@ -34,7 +34,9 @@ app.use(upload.single('avtar'));
 app.use(express.static("src"));
 app.use(express.static("uploads"));
 app.set("view engine", "ejs");
-
+app.get("/todo.png",function(request,response){
+    response.sendFile(__dirname+"/src/icons/todo.png")
+})
 app.get("/home.css", function (request, response) {
     response.sendFile(__dirname + "/src/css/home.css")
 })
