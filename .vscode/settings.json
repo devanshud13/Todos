@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/770baedb-1d2b-46de-a0c9-fb2f9f37a110/resourceGroups/taskelyResource/providers/Microsoft.Web/sites/taskely",
-    "appService.deploySubpath": "."
-}
